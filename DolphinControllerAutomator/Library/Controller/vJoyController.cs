@@ -91,10 +91,14 @@ namespace DolphinControllerAutomator.Library.Controllers {
         public void joystickDown() {
             joystick.ResetVJD(deviceID);
             joystick.SetAxis((int)-maxYValue, deviceID, HID_USAGES.HID_USAGE_Y);
+            delay();
+            reset();
         }
 
         public void pressA() {
             joystick.SetBtn(true, deviceID, 1);
+            delay();
+            reset();
         }
     }
 }
