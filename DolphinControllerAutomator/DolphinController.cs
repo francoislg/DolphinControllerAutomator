@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DolphinControllerAutomator.Library {
-    interface DolphinController {
+namespace DolphinControllerAutomator {
+    public interface DolphinController {
         void joystickUp();
         void joystickDown();
         void pressA();

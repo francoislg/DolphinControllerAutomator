@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DolphinControllerAutomator")]
+[assembly: AssemblyTitle("DolphinControllerAutomatorUITester")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DolphinControllerAutomator")]
+[assembly: AssemblyProduct("DolphinControllerAutomatorUITester")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("aa052d8f-1de8-43ba-9c5d-3c91cf809c50")]
+[assembly: Guid("b942b132-7b73-4f66-97df-cf28774290fa")]
 
 // Version information for an assembly consists of the following four values:
 //

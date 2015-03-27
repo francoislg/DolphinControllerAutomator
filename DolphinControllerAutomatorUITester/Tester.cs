@@ -7,27 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using DolphinControllerAutomator.Library;
-using DolphinControllerAutomator.Library.Controllers;
+using DolphinControllerAutomator;
+using DolphinControllerAutomator.Controllers;
 
-namespace DolphinControllerAutomator {
+namespace DolphinControllerAutomatorUITester {
     public partial class Tester : Form {
         DolphinController controller;
-        
+
         public Tester() {
             InitializeComponent();
             controller = new vJoyController(1);
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void pressUp(object sender, EventArgs e) {
             controller.joystickUp();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void pressDown(object sender, EventArgs e) {
             controller.joystickDown();
         }
 
-        private void button3_Click(object sender, EventArgs e) {
+        private void pressA(object sender, EventArgs e) {
             controller.pressA();
         }
     }

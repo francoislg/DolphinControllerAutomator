@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using vJoyInterfaceWrap;
 
-using DolphinControllerAutomator.Library;
-using DolphinControllerAutomator.Library.Controller;
+using DolphinControllerAutomator;
 
-namespace DolphinControllerAutomator.Library.Controllers {
-    class vJoyController : DolphinController {
+namespace DolphinControllerAutomator.Controllers {
+    public class vJoyController : DolphinController {
         private vJoy joystick;
         private vJoy.JoystickState joystickState;
         private uint deviceID = 1;
