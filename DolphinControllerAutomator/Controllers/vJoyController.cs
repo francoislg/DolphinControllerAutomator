@@ -11,8 +11,19 @@ namespace DolphinControllerAutomator.Controllers {
         private vJoy joystick;
         private vJoy.JoystickState joystickState;
         private uint deviceID = 1;
-        private int delayMS = 20;
+        private int defaultDelay = 20;
+        private long minYValue;
         private long maxYValue;
+        private long minXValue;
+        private long maxXValue;
+        private uint ABUTTON = 1;
+        private uint BBUTTON = 2;
+        private uint XBUTTON = 3;
+        private uint YBUTTON = 4;
+        private uint LBUTTON = 5;
+        private uint RBUTTON = 6;
+        private uint ZBUTTON = 7;
+        private uint STARTBUTTON = 8;
 
         public vJoyController(uint deviceID) {
             this.deviceID = deviceID;
@@ -24,7 +35,7 @@ namespace DolphinControllerAutomator.Controllers {
             outputStatus(status);
             verifyVersions();
             acquireTarget(status);
-            setMaxValues();
+            setJoystickBounds();
         }
 
         private void outputStatus(VjdStat status) {
@@ -64,40 +75,105 @@ namespace DolphinControllerAutomator.Controllers {
                 Console.WriteLine("Acquired: vJoy device number {0}.\n", deviceID);
         }
 
-        private void setMaxValues() {
+        private void setJoystickBounds() {
+            joystick.GetVJDAxisMin(deviceID, HID_USAGES.HID_USAGE_X, ref minXValue);
+            joystick.GetVJDAxisMin(deviceID, HID_USAGES.HID_USAGE_Y, ref minYValue);
+            
+            joystick.GetVJDAxisMax(deviceID, HID_USAGES.HID_USAGE_X, ref maxXValue);
             joystick.GetVJDAxisMax(deviceID, HID_USAGES.HID_USAGE_Y, ref maxYValue);
+            
         }
 
-        private void delay() {
-            System.Threading.Thread.Sleep(delayMS);
+        public DolphinController setDelay(int delay) {
+            this.defaultDelay = delay;
+            return this;
         }
 
-        private void reset() {
+        public DolphinController joystickUp() {
+            pushJoystick(maxYValue, HID_USAGES.HID_USAGE_Y);
+            return this;
+        }
+
+        public DolphinController joystickDown() {
+            pushJoystick(minYValue, HID_USAGES.HID_USAGE_Y);
+            return this;
+        }
+
+        public DolphinController joystickLeft() {
+            pushJoystick(minXValue, HID_USAGES.HID_USAGE_X);
+            return this;
+        }
+
+        public DolphinController joystickRight() {
+            pushJoystick(maxXValue, HID_USAGES.HID_USAGE_X);
+            return this;
+        }
+
+        public DolphinController pressA() {
+            press(ABUTTON);
+            return this;
+        }
+
+        public DolphinController pressB() {
+            press(BBUTTON);
+            return this;
+        }
+
+        public DolphinController pressX() {
+            press(XBUTTON);
+            return this;
+        }
+
+        public DolphinController pressY() {
+            press(YBUTTON);
+            return this;
+        }
+
+        public DolphinController pressL() {
+            press(LBUTTON);
+            return this;
+        }
+
+        public DolphinController pressR() {
+            press(RBUTTON);
+            return this;
+        }
+
+        public DolphinController pressZ() {
+            press(ZBUTTON);
+            return this;
+        }
+
+        public DolphinController pressStart() {
+            press(STARTBUTTON);
+            return this;
+        }
+
+        public DolphinController delay(int delay) {
+            System.Threading.Thread.Sleep(delay);
+            return this;
+        }
+
+        private vJoyController pushJoystick(long value, HID_USAGES hid_usage) {
+            joystick.SetAxis((int)value, deviceID, hid_usage);
+            delay().reset();
+            return this;
+        }
+
+        private vJoyController press(uint button) {
+            joystick.SetBtn(true, deviceID, button);
+            delay().reset();
+            return this;
+        }
+
+        private vJoyController delay() {
+            delay(defaultDelay);
+            return this;
+        }
+
+        private vJoyController reset() {
             joystick.ResetAll();
-        }
-
-        public void setDelayInMS(int delayMS) {
-            this.delayMS = delayMS;
-        }
-
-        public void joystickUp() {
-            joystick.ResetVJD(deviceID);
-            joystick.SetAxis((int)maxYValue, deviceID, HID_USAGES.HID_USAGE_Y);
-            delay();
-            reset();
-        }
-
-        public void joystickDown() {
-            joystick.ResetVJD(deviceID);
-            joystick.SetAxis((int)-maxYValue, deviceID, HID_USAGES.HID_USAGE_Y);
-            delay();
-            reset();
-        }
-
-        public void pressA() {
-            joystick.SetBtn(true, deviceID, 1);
-            delay();
-            reset();
+            return this;
         }
     }
 }

@@ -5,8 +5,20 @@ using System.Text;
 
 namespace DolphinControllerAutomator {
     public interface DolphinController {
-        void joystickUp();
-        void joystickDown();
-        void pressA();
+        DolphinController joystickUp();
+        DolphinController joystickDown();
+        DolphinController joystickLeft();
+        DolphinController joystickRight();
+        DolphinController pressA();
+        DolphinController pressB();
+        DolphinController pressX();
+        DolphinController pressY();
+        DolphinController pressL();
+        DolphinController pressR();
+        DolphinController pressZ();
+        DolphinController pressStart();
+        DolphinController delay(int delay);
+        DolphinController setDelay(int delay);
+        
     }
 }
