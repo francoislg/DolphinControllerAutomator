@@ -36,6 +36,13 @@
             this.pressLButton = new System.Windows.Forms.Button();
             this.pressRButton = new System.Windows.Forms.Button();
             this.pressZButton = new System.Windows.Forms.Button();
+            this.downPOVButton = new System.Windows.Forms.Button();
+            this.rightPOVButton = new System.Windows.Forms.Button();
+            this.leftPOVButton = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.upPOVButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pressUpButton
@@ -168,11 +175,85 @@
             this.pressZButton.UseVisualStyleBackColor = true;
             this.pressZButton.Click += new System.EventHandler(this.pressZ);
             // 
+            // downPOVButton
+            // 
+            this.downPOVButton.Location = new System.Drawing.Point(110, 238);
+            this.downPOVButton.Name = "downPOVButton";
+            this.downPOVButton.Size = new System.Drawing.Size(75, 23);
+            this.downPOVButton.TabIndex = 5;
+            this.downPOVButton.Text = "Down";
+            this.downPOVButton.UseVisualStyleBackColor = true;
+            this.downPOVButton.Click += new System.EventHandler(this.downPOVButton_Click);
+            // 
+            // rightPOVButton
+            // 
+            this.rightPOVButton.Location = new System.Drawing.Point(156, 209);
+            this.rightPOVButton.Name = "rightPOVButton";
+            this.rightPOVButton.Size = new System.Drawing.Size(75, 23);
+            this.rightPOVButton.TabIndex = 6;
+            this.rightPOVButton.Text = "Right";
+            this.rightPOVButton.UseVisualStyleBackColor = true;
+            this.rightPOVButton.Click += new System.EventHandler(this.rightPOVButton_Click);
+            // 
+            // leftPOVButton
+            // 
+            this.leftPOVButton.Location = new System.Drawing.Point(64, 209);
+            this.leftPOVButton.Name = "leftPOVButton";
+            this.leftPOVButton.Size = new System.Drawing.Size(75, 23);
+            this.leftPOVButton.TabIndex = 7;
+            this.leftPOVButton.Text = "Left";
+            this.leftPOVButton.UseVisualStyleBackColor = true;
+            this.leftPOVButton.Click += new System.EventHandler(this.leftPOVButton_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(63, 209);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 8;
+            this.button5.Text = "Left";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // upPOVButton
+            // 
+            this.upPOVButton.Location = new System.Drawing.Point(110, 180);
+            this.upPOVButton.Name = "upPOVButton";
+            this.upPOVButton.Size = new System.Drawing.Size(75, 23);
+            this.upPOVButton.TabIndex = 9;
+            this.upPOVButton.Text = "Up";
+            this.upPOVButton.UseVisualStyleBackColor = true;
+            this.upPOVButton.Click += new System.EventHandler(this.upPOVButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(40, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Joystick";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(58, 180);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "POV";
+            // 
             // Tester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 282);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.downPOVButton);
+            this.Controls.Add(this.rightPOVButton);
+            this.Controls.Add(this.leftPOVButton);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.upPOVButton);
             this.Controls.Add(this.pressZButton);
             this.Controls.Add(this.pressRButton);
             this.Controls.Add(this.pressYButton);
@@ -189,6 +270,7 @@
             this.Name = "Tester";
             this.Text = "Tester";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -207,6 +289,13 @@
         private System.Windows.Forms.Button pressLButton;
         private System.Windows.Forms.Button pressRButton;
         private System.Windows.Forms.Button pressZButton;
+        private System.Windows.Forms.Button downPOVButton;
+        private System.Windows.Forms.Button rightPOVButton;
+        private System.Windows.Forms.Button leftPOVButton;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button upPOVButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 

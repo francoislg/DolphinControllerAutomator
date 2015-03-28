@@ -8,22 +8,34 @@ using DolphinControllerAutomator;
 
 namespace DolphinControllerAutomator.Controllers {
     public class vJoyController : DolphinController {
+        private int DEFAULTDELAY = 50;
+
         private vJoy joystick;
         private vJoy.JoystickState joystickState;
         private uint deviceID = 1;
-        private int defaultDelay = 20;
+        private int currentDelay;
+        private int currentHalfDelay;
         private long minYValue;
         private long maxYValue;
         private long minXValue;
         private long maxXValue;
-        private uint ABUTTON = 1;
-        private uint BBUTTON = 2;
-        private uint XBUTTON = 3;
-        private uint YBUTTON = 4;
-        private uint LBUTTON = 5;
-        private uint RBUTTON = 6;
-        private uint ZBUTTON = 7;
-        private uint STARTBUTTON = 8;
+        private enum Buttons {
+            A = 1,
+            B = 2,
+            X = 3,
+            Y = 4,
+            L = 5,
+            R = 6,
+            Z = 7,
+            START = 8
+        }
+        private enum POVButtons {
+            UP = 0,
+            RIGHT = 1,
+            DOWN = 2,
+            LEFT = 3,
+            NIL = -1
+        }
 
         public vJoyController(uint deviceID) {
             this.deviceID = deviceID;
@@ -36,6 +48,7 @@ namespace DolphinControllerAutomator.Controllers {
             verifyVersions();
             acquireTarget(status);
             setJoystickBounds();
+            setDelay(DEFAULTDELAY);
         }
 
         private void outputStatus(VjdStat status) {
@@ -85,7 +98,8 @@ namespace DolphinControllerAutomator.Controllers {
         }
 
         public DolphinController setDelay(int delay) {
-            this.defaultDelay = delay;
+            currentDelay = delay;
+            currentHalfDelay = delay / 2;
             return this;
         }
 
@@ -110,42 +124,62 @@ namespace DolphinControllerAutomator.Controllers {
         }
 
         public DolphinController pressA() {
-            press(ABUTTON);
+            press(Buttons.A);
             return this;
         }
 
         public DolphinController pressB() {
-            press(BBUTTON);
+            press(Buttons.B);
             return this;
         }
 
         public DolphinController pressX() {
-            press(XBUTTON);
+            press(Buttons.X);
             return this;
         }
 
         public DolphinController pressY() {
-            press(YBUTTON);
+            press(Buttons.Y);
             return this;
         }
 
         public DolphinController pressL() {
-            press(LBUTTON);
+            press(Buttons.L);
             return this;
         }
 
         public DolphinController pressR() {
-            press(RBUTTON);
+            press(Buttons.R);
             return this;
         }
 
         public DolphinController pressZ() {
-            press(ZBUTTON);
+            press(Buttons.Z);
             return this;
         }
 
         public DolphinController pressStart() {
-            press(STARTBUTTON);
+            press(Buttons.START);
+            return this;
+        }
+
+        public DolphinController pressUp() {
+            pressPOV(POVButtons.UP);
+            return this;
+        }
+
+        public DolphinController pressDown() {
+            pressPOV(POVButtons.DOWN);
+            return this;
+        }
+
+        public DolphinController pressLeft() {
+            pressPOV(POVButtons.LEFT);
+            return this;
+        }
+
+        public DolphinController pressRight() {
+            pressPOV(POVButtons.RIGHT);
             return this;
         }
 
@@ -156,18 +190,29 @@ namespace DolphinControllerAutomator.Controllers {
 
         private vJoyController pushJoystick(long value, HID_USAGES hid_usage) {
             joystick.SetAxis((int)value, deviceID, hid_usage);
-            delay().reset();
+            halfDelay().reset().halfDelay();
             return this;
         }
 
-        private vJoyController press(uint button) {
-            joystick.SetBtn(true, deviceID, button);
-            delay().reset();
+        private vJoyController press(Buttons button) {
+            joystick.SetBtn(true, deviceID, (uint)button);
+            halfDelay().reset().halfDelay();
+            return this;
+        }
+
+        private vJoyController pressPOV(POVButtons pov) {
+            joystick.SetDiscPov((int)pov, deviceID, 1);
+            halfDelay().reset().halfDelay();
+            return this;
+        }
+
+        private vJoyController halfDelay() {
+            delay(currentDelay);
             return this;
         }
 
         private vJoyController delay() {
-            delay(defaultDelay);
+            delay(currentDelay);
             return this;
         }
 

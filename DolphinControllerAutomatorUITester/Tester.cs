@@ -66,5 +66,21 @@ namespace DolphinControllerAutomatorUITester {
         private void pressZ(object sender, EventArgs e) {
             controller.pressZ();
         }
+
+        private void downPOVButton_Click(object sender, EventArgs e) {
+            controller.pressDown();
+        }
+
+        private void rightPOVButton_Click(object sender, EventArgs e) {
+            controller.pressRight();
+        }
+
+        private void upPOVButton_Click(object sender, EventArgs e) {
+            controller.pressUp();
+        }
+
+        private void leftPOVButton_Click(object sender, EventArgs e) {
+            controller.pressLeft();
+        }
     }
 }

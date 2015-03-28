@@ -9,6 +9,10 @@ namespace DolphinControllerAutomator {
         DolphinController joystickDown();
         DolphinController joystickLeft();
         DolphinController joystickRight();
+        DolphinController pressUp();
+        DolphinController pressDown();
+        DolphinController pressLeft();
+        DolphinController pressRight();
         DolphinController pressA();
         DolphinController pressB();
         DolphinController pressX();
