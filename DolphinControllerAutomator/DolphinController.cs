@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace DolphinControllerAutomator {
     public interface DolphinController {
         DolphinController joystickUp();
@@ -17,6 +13,6 @@ namespace DolphinControllerAutomator {
         DolphinController and();
         DolphinController delay(int delay);
         DolphinController setDelay(int delay);
-        
+        DolphinController setDelayAfterRelease(int delay);
     }
 }

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using DolphinControllerAutomator;
-using DolphinControllerAutomator.Controllers;
-
 namespace DolphinControllerAutomatorUITester {
+    using DolphinControllerAutomator;
+    using DolphinControllerAutomator.Controllers;
+
     public partial class Tester : Form {
         DolphinController controller;
 
