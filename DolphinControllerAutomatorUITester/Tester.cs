@@ -27,22 +27,6 @@ namespace DolphinControllerAutomatorUITester {
             controller.joystickDown();
         }
 
-        private void pressA(object sender, EventArgs e) {
-            controller.pressA();
-        }
-
-        private void pressB(object sender, EventArgs e) {
-            controller.pressB();
-        }
-
-        private void pressX(object sender, EventArgs e) {
-            controller.pressX();
-        }
-
-        private void pressY(object sender, EventArgs e) {
-            controller.pressY();
-        }
-
         private void pressLeft(object sender, EventArgs e) {
             controller.joystickLeft();
         }
@@ -51,36 +35,52 @@ namespace DolphinControllerAutomatorUITester {
             controller.joystickRight();
         }
 
+        private void pressA(object sender, EventArgs e) {
+            controller.press(DolphinButton.A);
+        }
+
+        private void pressB(object sender, EventArgs e) {
+            controller.press(DolphinButton.B);
+        }
+
+        private void pressX(object sender, EventArgs e) {
+            controller.press(DolphinButton.X);
+        }
+
+        private void pressY(object sender, EventArgs e) {
+            controller.press(DolphinButton.Y);
+        }
+
         private void pressStart(object sender, EventArgs e) {
-            controller.pressStart();
+            controller.press(DolphinButton.START);
         }
 
         private void pressL(object sender, EventArgs e) {
-            controller.pressL();
+            controller.press(DolphinButton.L);
         }
 
         private void pressR(object sender, EventArgs e) {
-            controller.pressR();
+            controller.press(DolphinButton.R);
         }
 
         private void pressZ(object sender, EventArgs e) {
-            controller.pressZ();
+            controller.press(DolphinButton.Z);
         }
 
         private void downPOVButton_Click(object sender, EventArgs e) {
-            controller.pressDown();
+            controller.press(DolphinPOVButton.DOWN);
         }
 
         private void rightPOVButton_Click(object sender, EventArgs e) {
-            controller.pressRight();
+            controller.press(DolphinPOVButton.RIGHT);
         }
 
         private void upPOVButton_Click(object sender, EventArgs e) {
-            controller.pressUp();
+            controller.press(DolphinPOVButton.UP);
         }
 
         private void leftPOVButton_Click(object sender, EventArgs e) {
-            controller.pressLeft();
+            controller.press(DolphinPOVButton.LEFT);
         }
     }
 }

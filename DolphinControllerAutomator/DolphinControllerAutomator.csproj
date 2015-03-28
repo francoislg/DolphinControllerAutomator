@@ -42,9 +42,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DolphinButton.cs" />
     <Compile Include="Controllers\CouldNotAcquireTargetException.cs" />
     <Compile Include="Controllers\vJoyController.cs" />
     <Compile Include="DolphinController.cs" />
+    <Compile Include="DolphinPOVButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
