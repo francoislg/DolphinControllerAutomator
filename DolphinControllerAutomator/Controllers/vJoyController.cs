@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using vJoyInterfaceWrap;
+﻿namespace DolphinControllerAutomator.Controllers {
+    using System;
+    using vJoyInterfaceWrap;
 
-using DolphinControllerAutomator;
-
-namespace DolphinControllerAutomator.Controllers {
     public class vJoyController : DolphinController {
         private int DEFAULTDELAY = 50;
+        private int DEFAULTDELAYAFTERRELEASE = 50;
 
         private vJoy joystick;
         private vJoy.JoystickState joystickState;
         private uint deviceID = 1;
         private int currentDelay;
+        private int currnetDelayAfterRelease;
         private long minYValue;
         private long maxYValue;
         private long minXValue;
@@ -31,6 +28,7 @@ namespace DolphinControllerAutomator.Controllers {
             acquireTarget(status);
             setJoystickBounds();
             setDelay(DEFAULTDELAY);
+            setDelayAfterRelease(DEFAULTDELAYAFTERRELEASE);
         }
 
         private void outputStatus(VjdStat status) {
@@ -84,6 +82,11 @@ namespace DolphinControllerAutomator.Controllers {
             return this;
         }
 
+        public DolphinController setDelayAfterRelease(int delay) {
+            currnetDelayAfterRelease = delay;
+            return this;
+        }
+
         public DolphinController joystickUp() {
             pushJoystick(maxYValue, HID_USAGES.HID_USAGE_Y);
             return this;
@@ -122,16 +125,17 @@ namespace DolphinControllerAutomator.Controllers {
         public DolphinController forMilliseconds(int milliseconds) {
             delay(milliseconds);
             reset();
+            delay(currnetDelayAfterRelease);
             return this;
         }
 
         public DolphinController press(DolphinButton button) {
-            hold(button).forMilliseconds(DEFAULTDELAY);
+            hold(button).forMilliseconds(currentDelay);
             return this;
         }
 
         public DolphinController press(DolphinPOVButton button) {
-            hold(button).forMilliseconds(DEFAULTDELAY);
+            hold(button).forMilliseconds(currentDelay);
             return this;
         }
 
