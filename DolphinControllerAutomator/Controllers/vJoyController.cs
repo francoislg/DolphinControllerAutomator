@@ -145,7 +145,6 @@
 
         private vJoyController pushJoystick(long value, HID_USAGES hid_usage) {
             joystick.SetAxis((int)value, deviceID, hid_usage);
-            delay().reset().delay();
             return this;
         }
 
