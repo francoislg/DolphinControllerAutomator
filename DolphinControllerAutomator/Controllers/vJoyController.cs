@@ -156,7 +156,7 @@
             switch (joystick) {
                 case DolphinJoystick.UP:
                 case DolphinJoystick.DOWN:
-                    releaseHorizontalJoystick();
+                    releaseVerticalJoystick();
                     break;
                 case DolphinJoystick.LEFT:
                 case DolphinJoystick.RIGHT:

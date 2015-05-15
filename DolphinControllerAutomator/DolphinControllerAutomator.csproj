@@ -49,6 +49,8 @@
     <Compile Include="Async\ButtonCommand.cs" />
     <Compile Include="Async\POVButtonCommand.cs" />
     <Compile Include="Async\ConcurentButtonsCommands.cs" />
+    <Compile Include="Async\ReleaseAllCommand.cs" />
+    <Compile Include="Async\WaitCommand.cs" />
     <Compile Include="DolphinAsyncController.cs" />
     <Compile Include="DolphinButton.cs" />
     <Compile Include="Controllers\CouldNotAcquireTargetException.cs" />

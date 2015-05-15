@@ -20,6 +20,7 @@ namespace DolphinControllerAutomator {
 
         public DolphinAsyncController(DolphinController controller, int defaultHoldTimeInMilliseconds, int defaultReleaseTimeInMilliseconds) {
             this.controller = controller;
+            this.controller.releaseAll();
             this.holdTimeInMilliseconds = defaultHoldTimeInMilliseconds;
             this.releaseTimeInMilliseconds = defaultReleaseTimeInMilliseconds;
             this.currentList = new List<AsyncCommand>();
@@ -84,6 +85,7 @@ namespace DolphinControllerAutomator {
                 clearCurrentList();
                 List<AsyncCommand> list = new List<AsyncCommand>(commandsGroupList);
                 commandsGroupList.Clear();
+                this.controller.releaseAll();
                 return Task.Factory.StartNew(() => executeCommands(list));
             }
         }
@@ -96,6 +98,7 @@ namespace DolphinControllerAutomator {
 
         private void executeCommands(List<AsyncCommand> list) {
             list.ForEach(action => action.execute().Wait());
+            this.controller.releaseAll();
         }
     }
 }
