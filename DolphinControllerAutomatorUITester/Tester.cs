@@ -20,19 +20,19 @@ namespace DolphinControllerAutomatorUITester {
         }
 
         private void pressUp(object sender, EventArgs e) {
-            controller.hold(DolphinJoystick.UP);
+            controller.press(DolphinJoystick.UP);
         }
 
         private void pressDown(object sender, EventArgs e) {
-            controller.hold(DolphinJoystick.DOWN);
+            controller.press(DolphinJoystick.DOWN);
         }
 
         private void pressLeft(object sender, EventArgs e) {
-            controller.hold(DolphinJoystick.LEFT);
+            controller.press(DolphinJoystick.LEFT);
         }
 
         private void pressRight(object sender, EventArgs e) {
-            controller.hold(DolphinJoystick.RIGHT);
+            controller.press(DolphinJoystick.RIGHT);
         }
 
         private void pressA(object sender, EventArgs e) {

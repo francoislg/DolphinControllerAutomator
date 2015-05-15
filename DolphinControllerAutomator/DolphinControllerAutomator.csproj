@@ -42,10 +42,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async\AsyncButtonCommand.cs" />
+    <Compile Include="Async\AsyncCommand.cs" />
+    <Compile Include="Async\GroupCommands.cs" />
+    <Compile Include="Async\JoystickCommand.cs" />
+    <Compile Include="Async\ButtonCommand.cs" />
+    <Compile Include="Async\POVButtonCommand.cs" />
+    <Compile Include="Async\ConcurentButtonsCommands.cs" />
+    <Compile Include="DolphinAsyncController.cs" />
     <Compile Include="DolphinButton.cs" />
     <Compile Include="Controllers\CouldNotAcquireTargetException.cs" />
     <Compile Include="Controllers\vJoyController.cs" />
     <Compile Include="DolphinController.cs" />
+    <Compile Include="DolphinJoystick.cs" />
     <Compile Include="DolphinPOVButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

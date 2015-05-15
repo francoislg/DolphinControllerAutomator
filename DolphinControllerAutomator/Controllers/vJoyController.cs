@@ -10,7 +10,7 @@
         private vJoy.JoystickState joystickState;
         private uint deviceID = 1;
         private int currentDelay;
-        private int currnetDelayAfterRelease;
+        private int currentDelayAfterRelease;
         private long minYValue;
         private long maxYValue;
         private long minXValue;
@@ -83,7 +83,7 @@
         }
 
         public DolphinController setDelayAfterRelease(int delay) {
-            currnetDelayAfterRelease = delay;
+            currentDelayAfterRelease = delay;
             return this;
         }
 
@@ -122,8 +122,8 @@
 
         public DolphinController forMilliseconds(int milliseconds) {
             delay(milliseconds);
-            reset();
-            delay(currnetDelayAfterRelease);
+            releaseAll();
+            delay(currentDelayAfterRelease);
             return this;
         }
 
@@ -142,7 +142,44 @@
             return this;
         }
 
+        public DolphinController release(DolphinButton button) {
+            joystick.SetBtn(false, deviceID, (uint)button);
+            return this;
+        }
+
+        public DolphinController releasePOV() {
+            joystick.SetDiscPov((int)DolphinPOVButton.NIL, deviceID, 1);
+            return this;
+        }
+
+        public DolphinController release(DolphinJoystick joystick) {
+            switch (joystick) {
+                case DolphinJoystick.UP:
+                case DolphinJoystick.DOWN:
+                    releaseHorizontalJoystick();
+                    break;
+                case DolphinJoystick.LEFT:
+                case DolphinJoystick.RIGHT:
+                    releaseHorizontalJoystick();
+                    break;
+            }
+            return this;
+        }
+
+        private void releaseHorizontalJoystick() {
+            pushJoystick((maxXValue + minXValue) / 2, HID_USAGES.HID_USAGE_X);
+        }
+
+        private void releaseVerticalJoystick() {
+            pushJoystick((maxYValue + minYValue) / 2, HID_USAGES.HID_USAGE_Y);
+        }
+
         public DolphinController and() {
+            return this;
+        }
+
+        public DolphinController releaseAll() {
+            joystick.ResetAll();
             return this;
         }
 
@@ -153,11 +190,6 @@
 
         private vJoyController delay() {
             delay(currentDelay);
-            return this;
-        }
-
-        private vJoyController reset() {
-            joystick.ResetAll();
             return this;
         }
     }
