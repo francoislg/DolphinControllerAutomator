@@ -87,28 +87,26 @@
             return this;
         }
 
-        public DolphinController joystickUp() {
-            pushJoystick(maxYValue, HID_USAGES.HID_USAGE_Y);
-            return this;
-        }
-
-        public DolphinController joystickDown() {
-            pushJoystick(minYValue, HID_USAGES.HID_USAGE_Y);
-            return this;
-        }
-
-        public DolphinController joystickLeft() {
-            pushJoystick(minXValue, HID_USAGES.HID_USAGE_X);
-            return this;
-        }
-
-        public DolphinController joystickRight() {
-            pushJoystick(maxXValue, HID_USAGES.HID_USAGE_X);
-            return this;
-        }
-
         public DolphinController delay(int delay) {
             System.Threading.Thread.Sleep(delay);
+            return this;
+        }
+
+        public DolphinController hold(DolphinJoystick joystick) {
+            switch (joystick) {
+                case DolphinJoystick.UP:
+                    pushJoystick(maxYValue, HID_USAGES.HID_USAGE_Y);
+                    break;
+                case DolphinJoystick.DOWN:
+                    pushJoystick(minYValue, HID_USAGES.HID_USAGE_Y);
+                    break;
+                case DolphinJoystick.LEFT:
+                    pushJoystick(minXValue, HID_USAGES.HID_USAGE_X);
+                    break;
+                case DolphinJoystick.RIGHT:
+                    pushJoystick(maxXValue, HID_USAGES.HID_USAGE_X);
+                    break;
+            }
             return this;
         }
 
@@ -136,6 +134,11 @@
 
         public DolphinController press(DolphinPOVButton button) {
             hold(button).forMilliseconds(currentDelay);
+            return this;
+        }
+
+        public DolphinController press(DolphinJoystick joystick) {
+            hold(joystick).forMilliseconds(currentDelay);
             return this;
         }
 
