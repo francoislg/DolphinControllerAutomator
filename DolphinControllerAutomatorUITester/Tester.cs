@@ -13,10 +13,12 @@ namespace DolphinControllerAutomatorUITester {
 
     public partial class Tester : Form {
         DolphinController controller;
+        DolphinAsyncController asyncController;
 
         public Tester() {
             InitializeComponent();
             controller = new vJoyController(1);
+            asyncController = new DolphinAsyncController(controller);
         }
 
         private void pressUp(object sender, EventArgs e) {
@@ -81,6 +83,10 @@ namespace DolphinControllerAutomatorUITester {
 
         private void leftPOVButton_Click(object sender, EventArgs e) {
             controller.press(DolphinPOVButton.LEFT);
+        }
+
+        private async void asyncTestButton_Click(object sender, EventArgs e) {
+            await asyncController.hold(DolphinJoystick.RIGHT).forMilliseconds(1000).hold(DolphinJoystick.UP).forMilliseconds(500).then().press(DolphinButton.A).execute();
         }
     }
 }
