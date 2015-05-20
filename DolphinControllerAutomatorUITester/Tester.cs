@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace DolphinControllerAutomatorUITester {
+    using System.Diagnostics;
     using DolphinControllerAutomator;
     using DolphinControllerAutomator.Controllers;
 
@@ -86,7 +87,12 @@ namespace DolphinControllerAutomatorUITester {
         }
 
         private async void asyncTestButton_Click(object sender, EventArgs e) {
-            await asyncController.hold(DolphinJoystick.RIGHT).forMilliseconds(1000).hold(DolphinJoystick.UP).forMilliseconds(500).then().press(DolphinButton.A).execute();
+            asyncController.hold(DolphinJoystick.UP).forMilliseconds(150).hold(DolphinJoystick.RIGHT).forMilliseconds(150);
+            await asyncController.execute();
+        }
+
+        private void multipleTest_Click(object sender, EventArgs e) {
+            controller.hold(DolphinJoystick.UP).forMilliseconds(100).and().hold(DolphinJoystick.RIGHT).forMilliseconds(100);
         }
     }
 }

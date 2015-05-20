@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.asyncTestButton = new System.Windows.Forms.Button();
+            this.multipleTest = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // pressUpButton
@@ -253,11 +254,22 @@
             this.asyncTestButton.UseVisualStyleBackColor = true;
             this.asyncTestButton.Click += new System.EventHandler(this.asyncTestButton_Click);
             // 
+            // multipleTest
+            // 
+            this.multipleTest.Location = new System.Drawing.Point(299, 247);
+            this.multipleTest.Name = "multipleTest";
+            this.multipleTest.Size = new System.Drawing.Size(75, 23);
+            this.multipleTest.TabIndex = 12;
+            this.multipleTest.Text = "MultipleTest";
+            this.multipleTest.UseVisualStyleBackColor = true;
+            this.multipleTest.Click += new System.EventHandler(this.multipleTest_Click);
+            // 
             // Tester
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 282);
+            this.Controls.Add(this.multipleTest);
             this.Controls.Add(this.asyncTestButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -309,6 +321,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button asyncTestButton;
+        private System.Windows.Forms.Button multipleTest;
     }
 }
 

@@ -64,6 +64,11 @@ namespace DolphinControllerAutomator {
             return this;
         }
 
+        public DolphinAsyncController wait(int milliseconds) {
+            currentList.Add(new WaitCommand(controller, milliseconds));
+            return this;
+        }
+
         private void clearCurrentButtons(int milliseconds) {
             if (currentButtons.Count > 0) {
                 currentList.Add(new ConcurentButtonsCommands(controller, new List<AsyncButtonCommand>(currentButtons), milliseconds));
