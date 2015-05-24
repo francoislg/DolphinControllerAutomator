@@ -179,7 +179,7 @@
         }
 
         public DolphinController releaseAll() {
-            joystick.ResetAll();
+            joystick.ResetVJD(deviceID);
             return this;
         }
 
