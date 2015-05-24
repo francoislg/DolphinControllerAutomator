@@ -93,7 +93,6 @@ namespace DolphinControllerAutomatorUITester {
 
         private void multipleTest_Click(object sender, EventArgs e) {
             controller.hold(DolphinJoystick.UP).forMilliseconds(100).and().hold(DolphinJoystick.RIGHT).forMilliseconds(100);
-
         }
     }
 }
