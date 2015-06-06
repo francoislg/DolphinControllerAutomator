@@ -103,7 +103,7 @@ namespace DolphinControllerAutomator {
 
         private void executeCommands(List<AsyncCommand> list) {
             list.ForEach(action => action.execute().Wait());
-            this.controller.releaseAll();
+            this.controller.releaseAll().delay(DEFAULTWAITAFTERRELEASE);
         }
     }
 }

@@ -87,12 +87,13 @@ namespace DolphinControllerAutomatorUITester {
         }
 
         private async void asyncTestButton_Click(object sender, EventArgs e) {
-            asyncController.hold(DolphinJoystick.UP).forMilliseconds(150).hold(DolphinJoystick.RIGHT).forMilliseconds(150);
+            asyncController.hold(DolphinJoystick.UP).forMilliseconds(250).then().hold(DolphinJoystick.RIGHT).forMilliseconds(50).then().press(DolphinButton.A);
             await asyncController.execute();
+            await asyncController.press(DolphinButton.A).execute();
         }
 
         private void multipleTest_Click(object sender, EventArgs e) {
-            controller.hold(DolphinJoystick.UP).forMilliseconds(100).and().hold(DolphinJoystick.RIGHT).forMilliseconds(100);
+            controller.hold(DolphinJoystick.UP).forMilliseconds(250).and().hold(DolphinJoystick.RIGHT).forMilliseconds(50);
         }
     }
 }
