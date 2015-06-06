@@ -19,7 +19,12 @@ namespace DolphinControllerAutomator.Async {
         }
 
         private void executeCommmands() {
-            Parallel.ForEach(commands, command => command.execute().Wait());
+            int n = commands.Count;
+            Task[] tasks = new Task[n];
+            for (int i = 0; i < n; i++) {
+                tasks[i] = commands[i].execute();
+            }
+            Task.WaitAll(tasks);
         }
     }
 }
