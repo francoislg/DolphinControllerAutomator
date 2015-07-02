@@ -7,8 +7,8 @@ namespace DolphinControllerAutomator {
     using Async;
     using System.Threading.Tasks;
     public class DolphinAsyncController {
-        private const int DEFAULTWAIT = 50;
-        private const int DEFAULTWAITAFTERRELEASE = 50;
+        private const int DEFAULTWAIT = 100;
+        private const int DEFAULTWAITAFTERRELEASE = 100;
         private DolphinController controller;
         private List<AsyncCommand> currentList;
         private List<AsyncButtonCommand> currentButtons;
@@ -26,7 +26,6 @@ namespace DolphinControllerAutomator {
             this.currentList = new List<AsyncCommand>();
             this.currentButtons = new List<AsyncButtonCommand>();
             this.commandsGroupList = new List<AsyncCommand>();
-            this.holdTimeInMilliseconds = DEFAULTWAIT;
         }
 
         public DolphinAsyncController hold(DolphinPOVButton button) {
@@ -103,7 +102,7 @@ namespace DolphinControllerAutomator {
 
         private void executeCommands(List<AsyncCommand> list) {
             list.ForEach(action => action.execute().Wait());
-            this.controller.releaseAll().delay(DEFAULTWAITAFTERRELEASE);
+            this.controller.releaseAll().delay(releaseTimeInMilliseconds);
         }
     }
 }
