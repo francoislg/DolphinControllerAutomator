@@ -7,22 +7,20 @@ namespace DolphinControllerAutomator {
     using Async;
     using System.Threading.Tasks;
     public class DolphinAsyncController {
-        private const int DEFAULTWAIT = 100;
-        private const int DEFAULTWAITAFTERRELEASE = 100;
+        private const int DEFAULTPRESSTIME = 50;
+        private const int DEFAULTTIMEBETWEENCOMMANDS = 20;
         private DolphinController controller;
         private List<AsyncCommand> currentList;
         private List<AsyncButtonCommand> currentButtons;
         private List<AsyncCommand> commandsGroupList;
-        private int holdTimeInMilliseconds;
-        private int releaseTimeInMilliseconds;
+        private readonly int pressTime;
+        private readonly int timeBetweenCommands;
 
-        public DolphinAsyncController(DolphinController controller) : this(controller, DEFAULTWAIT, DEFAULTWAITAFTERRELEASE) { }
-
-        public DolphinAsyncController(DolphinController controller, int defaultHoldTimeInMilliseconds, int defaultReleaseTimeInMilliseconds) {
+        public DolphinAsyncController(DolphinController controller, int defaultPressTime = DEFAULTPRESSTIME, int defaultTimeBetweenCommands = DEFAULTTIMEBETWEENCOMMANDS) {
             this.controller = controller;
             this.controller.releaseAll();
-            this.holdTimeInMilliseconds = defaultHoldTimeInMilliseconds;
-            this.releaseTimeInMilliseconds = defaultReleaseTimeInMilliseconds;
+            this.pressTime = defaultPressTime;
+            this.timeBetweenCommands = defaultTimeBetweenCommands;
             this.currentList = new List<AsyncCommand>();
             this.currentButtons = new List<AsyncButtonCommand>();
             this.commandsGroupList = new List<AsyncCommand>();
@@ -44,17 +42,17 @@ namespace DolphinControllerAutomator {
         }
 
         public DolphinAsyncController press(DolphinPOVButton button) {
-            hold(button).forMilliseconds(holdTimeInMilliseconds);
+            hold(button).forMilliseconds(pressTime);
             return this;
         }
 
         public DolphinAsyncController press(DolphinButton button) {
-            hold(button).forMilliseconds(holdTimeInMilliseconds);
+            hold(button).forMilliseconds(pressTime);
             return this;
         }
 
         public DolphinAsyncController press(DolphinJoystick joystick) {
-            hold(joystick).forMilliseconds(holdTimeInMilliseconds);
+            hold(joystick).forMilliseconds(pressTime);
             return this;
         }
 
@@ -95,14 +93,15 @@ namespace DolphinControllerAutomator {
         }
 
         private void clearCurrentList(){
-            clearCurrentButtons(holdTimeInMilliseconds);
+            clearCurrentButtons(pressTime);
             commandsGroupList.Add(new GroupCommands(controller, new List<AsyncCommand>(currentList)));
+            commandsGroupList.Add(new WaitCommand(controller, timeBetweenCommands));
             currentList.Clear();
         }
 
         private void executeCommands(List<AsyncCommand> list) {
             list.ForEach(action => action.execute().Wait());
-            this.controller.releaseAll().delay(releaseTimeInMilliseconds);
+            this.controller.releaseAll();
         }
     }
 }
